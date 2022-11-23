@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div class="container-fluid" ng-app="myApp" >
+  <div class="jumbotron" ng-controller="myController">
+    
+  <h1>Welcome to the BMI Calculator</h1>
+<div >
+     <h3>Weight</h3>
+    <p ng-model>Weight in pounds: {{weight}}</p>
+    <input type="text" type="number" min="0" ng-model="weight" >
+    <br/>
+  
+    <h3>Height</h3>
+     <p1 ng-model>Feet: </p1>
+    <input type="text" type="number" min="0" max="8" ng-model="feet">
+    <br/>
+  <br/>
+    <p1 ng-model>Inches: </p1>
+    <input type="text" type="number" min="0" max="11" ng-model="inches">
+    <br/>
+  <br/>
+    <p ng-model>Height in Inches: {{convertHeight(feet, inches)}}</p>
+      </input>
+    <h1>Your BMI is {{calcBMI(globalHeight,weight)}}</h1> 
+    <div id="displayDiv"></div> 
+  </div> 
+</div>
+</div>
+<script>
+var myApp=angular.module('myApp',[]);
+myApp.controller('myController', function($scope){
+
+  var globalHeight;
+ var globalBMI;
+  $scope.weight=1;
+  $scope.feet=1;
+  $scope.inches=1; 
+  $scope.convertHeight=function(feet, inches){
+    var convertedHeight = (feet*12)+inches;
+   $scope.globalHeight = convertedHeight;  
+    return convertedHeight;
+  };
+  
+  $scope.calcBMI=function(globalHeight, weight){
+    var bmi=((weight/Math.pow(globalHeight,2))*703),
+        globalBMI=bmi;
+    $scope.test=globalBMI;
+    return bmi.toFixed(2);
+  };
+  
+  $scope.globalBMI=globalBMI;  
+});
+  
+  
+</script>  
+</body>
+</html>
+
